@@ -1,0 +1,471 @@
+/* =====================================================
+   CUSTOM OVERRIDES ON TOP OF BOOTSWATCH CYBORG
+   ===================================================== */
+
+/* --------------------------------------------------
+   1. SCREEN SYSTEM — SPA routing
+   -------------------------------------------------- */
+.screen {
+  display: none;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+.screen.active {
+  display: block;
+}
+
+/* Hide utility used by app.js */
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------
+   2. EXAM NAVBAR LAYOUT
+   -------------------------------------------------- */
+.exam-navbar {
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+/* --------------------------------------------------
+   3. MODE BADGE (className set directly by app.js)
+   -------------------------------------------------- */
+.mode-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  background: #2a9fd6;  /* Cyborg primary */
+  color: #fff;
+}
+.mode-badge.study-mode {
+  background: #77b300;  /* Cyborg success */
+}
+
+/* --------------------------------------------------
+   4. TIMER WRAP (className toggled by app.js)
+   -------------------------------------------------- */
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.1rem;
+  color: #2a9fd6;
+  transition: color .3s;
+}
+.timer-wrap.warning {
+  color: #ff8800;
+}
+.timer-wrap.critical {
+  color: #cc0000;
+  animation: blink .6s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .4; }
+}
+
+/* --------------------------------------------------
+   5. EXAM BODY GRID — question + sidebar
+   -------------------------------------------------- */
+.exam-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 196px;
+  min-height: calc(100vh - 57px);
+}
+
+/* --------------------------------------------------
+   6. QUESTION PANEL
+   -------------------------------------------------- */
+.question-panel {
+  padding: 32px 40px;
+  border-right: 1px solid #333;
+}
+
+/* --------------------------------------------------
+   7. ANSWER OPTION ITEMS
+   (created dynamically by app.js with these classes)
+   -------------------------------------------------- */
+.option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background: #282828;
+  border: 1px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  user-select: none;
+}
+.option-item:hover:not(.disabled) {
+  background: #333;
+  border-color: #666;
+}
+.option-item.disabled {
+  cursor: default;
+}
+/* Selected (before submit) */
+.option-item.selected {
+  border-color: #2a9fd6;
+  background: rgba(42,159,214,.12);
+}
+/* Correct answer chosen */
+.option-item.correct {
+  border-color: #77b300;
+  background: rgba(119,179,0,.14);
+}
+/* Wrong answer chosen */
+.option-item.incorrect {
+  border-color: #cc0000;
+  background: rgba(204,0,0,.14);
+}
+/* Correct answer not chosen (revealed after submit) */
+.option-item.reveal-correct {
+  border-color: #77b300;
+  background: rgba(119,179,0,.10);
+}
+
+.option-letter {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: .85rem;
+  color: #888;
+  min-width: 20px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.option-item.selected    .option-letter { color: #2a9fd6; }
+.option-item.correct     .option-letter { color: #77b300; }
+.option-item.incorrect   .option-letter { color: #cc0000; }
+.option-item.reveal-correct .option-letter { color: #77b300; }
+
+.option-text {
+  font-size: .95rem;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.option-check {
+  font-size: 1rem;
+  min-width: 18px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.option-item.correct     .option-check { color: #77b300; }
+.option-item.incorrect   .option-check { color: #cc0000; }
+.option-item.reveal-correct .option-check { color: #77b300; }
+
+/* --------------------------------------------------
+   8. FLAG BUTTON (className set by app.js)
+   -------------------------------------------------- */
+.btn-flag {
+  background: transparent;
+  border: 1px solid #444;
+  color: #888;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: .9rem;
+}
+.btn-flag:hover {
+  border-color: #888;
+  color: #ccc;
+}
+.btn-flag.flagged {
+  border-color: #ff8800;
+  color: #ff8800;
+  background: rgba(255,136,0,.1);
+}
+
+/* --------------------------------------------------
+   9. FEEDBACK PANEL
+   -------------------------------------------------- */
+.feedback-panel {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  animation: fadeUp .25s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Result text set by app.js as .feedback-result.correct/.incorrect */
+.feedback-result.correct   { color: #77b300; }
+.feedback-result.incorrect { color: #cc0000; }
+
+/* Feedback sub-sections */
+#feedback-explanation,
+.card-body#feedback-explanation {
+  color: #ffffff !important;
+  line-height: 1.7;
+}
+.feedback-objective   { font-size: .8rem; }
+.feedback-link        { text-decoration: none; }
+
+/* --------------------------------------------------
+   10. NAVIGATOR SIDEBAR
+   -------------------------------------------------- */
+.nav-sidebar {
+  padding: 20px 14px;
+  background: #1a1a1a;
+  border-left: 1px solid #333;
+  position: sticky;
+  top: 57px;              /* height of exam navbar */
+  height: calc(100vh - 57px);
+  overflow-y: auto;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+}
+
+/* nav-btn classes set by app.js */
+.nav-btn {
+  aspect-ratio: 1;
+  border: 1px solid #444;
+  background: #282828;
+  color: #888;
+  font-size: .65rem;
+  font-family: monospace;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+  padding: 0;
+}
+.nav-btn:hover  { border-color: #888; color: #ccc; }
+.nav-btn.current {
+  border-color: #2a9fd6;
+  background: rgba(42,159,214,.15);
+  color: #2a9fd6;
+}
+.nav-btn.correct {
+  border-color: #77b300;
+  background: rgba(119,179,0,.15);
+  color: #77b300;
+}
+.nav-btn.incorrect {
+  border-color: #cc0000;
+  background: rgba(204,0,0,.15);
+  color: #cc0000;
+}
+.nav-btn.flagged {
+  border-color: #ff8800;
+  background: rgba(255,136,0,.12);
+  color: #ff8800;
+}
+
+/* Legend dots */
+.nav-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.nav-dot.correct   { background: #77b300; }
+.nav-dot.incorrect { background: #cc0000; }
+.nav-dot.flagged   { background: #ff8800; }
+.nav-dot.unanswered { background: #333; border: 1px solid #555; }
+
+/* --------------------------------------------------
+   11. RESULTS SCREEN
+   -------------------------------------------------- */
+
+/* Score ring SVG */
+.ring-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+.ring-svg {
+  width: 160px;
+  height: 160px;
+  transform: rotate(-90deg);
+}
+.ring-bg {
+  fill: none;
+  stroke: #333;
+  stroke-width: 8;
+}
+.ring-fill {
+  fill: none;
+  stroke: #2a9fd6;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 327;
+  stroke-dashoffset: 327;
+  transition: stroke-dashoffset 1.4s ease, stroke .4s ease;
+}
+.ring-pct {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Stat items rendered by app.js */
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-label {
+  font-size: .7rem;
+  letter-spacing: .1em;
+  color: #888;
+  font-family: monospace;
+}
+.stat-value.green  { color: #77b300; }
+.stat-value.red    { color: #cc0000; }
+.stat-value.accent { color: #2a9fd6; }
+
+/* Grade message: .results-grade.pass/.close/.fail */
+.results-grade.pass  { color: #77b300; }
+.results-grade.close { color: #ff8800; }
+.results-grade.fail  { color: #cc0000; }
+
+/* Breakdown rows rendered by app.js */
+.breakdown-title {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #888;
+  margin-bottom: 12px;
+  font-family: monospace;
+}
+.breakdown-grid {
+  display: flex;
+  flex-direction: column;
+}
+.breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid #2a2a2a;
+  font-size: .85rem;
+}
+.breakdown-row:last-child { border-bottom: none; }
+.breakdown-q-id {
+  font-family: monospace;
+  font-size: .75rem;
+  color: #666;
+  min-width: 36px;
+  flex-shrink: 0;
+}
+.breakdown-q-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #ccc;
+}
+.breakdown-result {
+  font-family: monospace;
+  font-size: .8rem;
+  min-width: 56px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.breakdown-result.correct   { color: #77b300; }
+.breakdown-result.incorrect { color: #cc0000; }
+.breakdown-result.skipped   { color: #666; }
+
+/* Wrap breakdown card body */
+#results-breakdown .card-body {
+  padding: 16px 20px;
+}
+
+/* --------------------------------------------------
+   12. MODAL OVERLAY (custom, not Bootstrap modal)
+   app.js toggles .hidden on #modal-exit
+   -------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(3px);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------
+   13. TOAST (custom)
+   app.js toggles .hidden on #toast
+   -------------------------------------------------- */
+.toast-custom {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #2a2a2a;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: .9rem;
+  color: #eee;
+  z-index: 2000;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+  animation: toastSlide .25s ease;
+}
+.toast-custom.hidden {
+  display: none !important;
+}
+@keyframes toastSlide {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------
+   14. RESPONSIVE
+   -------------------------------------------------- */
+@media (max-width: 767px) {
+  .exam-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-sidebar {
+    position: static;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid #333;
+  }
+  .nav-grid {
+    grid-template-columns: repeat(9, 1fr);
+  }
+  .question-panel {
+    padding: 20px 16px;
+  }
+}
+
+/* --------------------------------------------------
+   15. SCROLLBAR
+   -------------------------------------------------- */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #666; }
+

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="no-referrer" />
+  <title>CompTIA Security+ SY0-701 — Practice Exams</title>
+
+  <!-- Bootswatch Cyborg (dark tech theme, includes Bootstrap 5) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cyborg/bootstrap.min.css" />
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- =====================================================
+     SCREEN: HOME
+     ===================================================== -->
+<div id="screen-home" class="screen active">
+
+  <nav class="navbar navbar-dark bg-dark border-bottom border-secondary px-4 py-3">
+    <span class="navbar-brand fw-bold fs-5 mb-0">
+      <span class="text-primary">Security+</span> Practice Exams
+    </span>
+    <div>
+      <span class="badge bg-primary">SY0-701</span>
+      <span class="badge bg-secondary ms-1">v1.8</span>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+
+    <!-- Hero -->
+    <div class="text-center mb-5">
+      <p class="text-muted text-uppercase mb-1" style="letter-spacing:.2em;font-size:.8rem;">
+        Professor Messer's
+      </p>
+      <h1 class="display-3 fw-bold mb-2">
+        CompTIA <span class="text-primary">Security+</span>
+      </h1>
+      <p class="lead text-muted">
+        4 practice exams &nbsp;&bull;&nbsp; 255 questions &nbsp;&bull;&nbsp;
+        Detailed explanations &nbsp;&bull;&nbsp; Timed &amp; Study modes
+      </p>
+    </div>
+
+    <!-- Exam Cards Row -->
+    <div class="row g-4 mb-5">
+
+      <!-- Exam A -->
+      <div class="col-lg-4">
+        <div class="card h-100 border-primary">
+          <div class="card-header bg-primary fw-bold d-flex justify-content-between align-items-center text-white">
+            Practice Exam A
+            <span class="badge bg-dark">85 Questions</span>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <p class="text-muted small">Multiple Choice &amp; Multi-Answer</p>
+            <div class="d-grid gap-2 mt-auto">
+              <button class="btn btn-primary" onclick="App.startExam('A','timed')">
+                ⏱ Timed Mode (90 min)
+              </button>
+              <button class="btn btn-outline-secondary" onclick="App.startExam('A','study')">
+                📖 Study Mode
+              </button>
+            </div>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" id="shuffle-A">
+              <label class="form-check-label text-muted small" for="shuffle-A">🔀 Shuffle questions</label>
+            </div>
+            <div id="score-A" class="mt-2 small"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam B -->
+      <div class="col-lg-4">
+        <div class="card h-100 border-success">
+          <div class="card-header bg-success fw-bold d-flex justify-content-between align-items-center text-white">
+            Practice Exam B
+            <span class="badge bg-dark">85 Questions</span>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <p class="text-muted small">Multiple Choice &amp; Multi-Answer</p>
+            <div class="d-grid gap-2 mt-auto">
+              <button class="btn btn-success" onclick="App.startExam('B','timed')">
+                ⏱ Timed Mode (90 min)
+              </button>
+              <button class="btn btn-outline-secondary" onclick="App.startExam('B','study')">
+                📖 Study Mode
+              </button>
+            </div>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" id="shuffle-B">
+              <label class="form-check-label text-muted small" for="shuffle-B">🔀 Shuffle questions</label>
+            </div>
+            <div id="score-B" class="mt-2 small"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam C -->
+      <div class="col-lg-4">
+        <div class="card h-100 border-warning">
+          <div class="card-header bg-warning fw-bold d-flex justify-content-between align-items-center text-dark">
+            Practice Exam C
+            <span class="badge bg-dark text-white">85 Questions</span>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <p class="text-muted small">Multiple Choice &amp; Multi-Answer</p>
+            <div class="d-grid gap-2 mt-auto">
+              <button class="btn btn-warning text-dark" onclick="App.startExam('C','timed')">
+                ⏱ Timed Mode (90 min)
+              </button>
+              <button class="btn btn-outline-secondary" onclick="App.startExam('C','study')">
+                📖 Study Mode
+              </button>
+            </div>
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" id="shuffle-C">
+              <label class="form-check-label text-muted small" for="shuffle-C">🔀 Shuffle questions</label>
+            </div>
+            <div id="score-C" class="mt-2 small"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam D — Random Mix -->
+      <div class="col-lg-4 offset-lg-4">
+        <div class="card h-100 border-info">
+          <div class="card-header bg-info fw-bold d-flex justify-content-between align-items-center text-dark">
+            <span>🎲 Practice Exam D</span>
+            <span class="badge bg-dark text-white">85 Random Qs</span>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <p class="text-muted small">
+              Randomly selects 85 questions from all three exams (A, B &amp; C).
+              Every session is unique.
+            </p>
+            <div class="d-grid gap-2 mt-auto">
+              <button class="btn btn-info text-dark" onclick="App.startExam('D','timed')">
+                ⏱ Timed Mode (90 min)
+              </button>
+              <button class="btn btn-outline-secondary" onclick="App.startExam('D','study')">
+                📖 Study Mode
+              </button>
+            </div>
+            <div id="score-D" class="mt-3 small"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row -->
+
+    <!-- Domain Weights Card -->
+    <div class="card border-secondary mb-4">
+      <div class="card-header text-muted small text-uppercase" style="letter-spacing:.15em;">
+        Exam Domain Weights
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>1.0 General Security Concepts</span>
+            <span class="text-muted">12%</span>
+          </div>
+          <div class="progress" style="height:6px;">
+            <div class="progress-bar bg-primary" style="width:12%;"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>2.0 Threats, Vulnerabilities &amp; Mitigations</span>
+            <span class="text-muted">22%</span>
+          </div>
+          <div class="progress" style="height:6px;">
+            <div class="progress-bar bg-success" style="width:22%;"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>3.0 Security Architecture</span>
+            <span class="text-muted">18%</span>
+          </div>
+          <div class="progress" style="height:6px;">
+            <div class="progress-bar bg-warning" style="width:18%;"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>4.0 Security Operations</span>
+            <span class="text-muted">28%</span>
+          </div>
+          <div class="progress" style="height:6px;">
+            <div class="progress-bar bg-info" style="width:28%;"></div>
+          </div>
+        </div>
+        <div class="mb-0">
+          <div class="d-flex justify-content-between small mb-1">
+            <span>5.0 Security Program Management &amp; Oversight</span>
+            <span class="text-muted">20%</span>
+          </div>
+          <div class="progress" style="height:6px;">
+            <div class="progress-bar bg-danger" style="width:20%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts -->
+    <p class="text-center text-muted small">
+      Keyboard shortcuts during exam:
+      <kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd> <kbd>D</kbd> select options &nbsp;&bull;&nbsp;
+      <kbd>Enter</kbd> submit / next &nbsp;&bull;&nbsp;
+      <kbd>←</kbd> <kbd>→</kbd> navigate &nbsp;&bull;&nbsp;
+      <kbd>Shift</kbd> + <kbd>F</kbd> flag question
+    </p>
+
+  </div>
+</div>
+<!-- /screen-home -->
+
+
+<!-- =====================================================
+     SCREEN: EXAM
+     ===================================================== -->
+<div id="screen-exam" class="screen">
+
+  <!-- Sticky Exam Header -->
+  <nav class="navbar navbar-dark bg-dark border-bottom border-secondary sticky-top px-3 py-2 exam-navbar">
+
+    <!-- Left: exit + title + mode -->
+    <div class="d-flex align-items-center gap-2">
+      <button class="btn btn-sm btn-outline-secondary" onclick="App.confirmExit()">← Exit</button>
+      <span class="fw-bold d-none d-sm-inline" id="exam-title-bar">Practice Exam A</span>
+      <span class="mode-badge" id="mode-badge">TIMED</span>
+    </div>
+
+    <!-- Center: progress -->
+    <div class="flex-grow-1 px-3 d-none d-md-block">
+      <div class="progress" style="height:5px;">
+        <div id="progress-bar" class="progress-bar bg-primary" role="progressbar"
+             style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        </div>
+      </div>
+      <div class="text-center text-muted font-monospace mt-1" style="font-size:.7rem;" id="progress-label">
+        0 / 85
+      </div>
+    </div>
+
+    <!-- Right: timer + score -->
+    <div class="d-flex align-items-center gap-3">
+      <div id="timer-wrap" class="timer-wrap">
+        <span>⏱</span>
+        <span id="timer-display" class="fw-bold font-monospace">90:00</span>
+      </div>
+      <div id="score-display" class="text-muted font-monospace d-none d-sm-block" style="font-size:.8rem;">
+        Score: —
+      </div>
+    </div>
+
+  </nav><!-- /exam navbar -->
+
+  <!-- Exam body: two-column grid -->
+  <div class="exam-body-grid">
+
+    <!-- Main Question Area -->
+    <div class="question-panel" id="question-panel">
+
+      <p class="text-muted font-monospace mb-2" style="font-size:.8rem;" id="q-number">
+        Question 1 of 85
+      </p>
+
+      <p class="fs-5 mb-2" id="q-text"></p>
+
+      <p class="text-warning small mb-3" id="q-hint"></p>
+
+      <!-- Answer options (rendered by JS) -->
+      <div id="options-list" class="mb-4"></div>
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2 align-items-center flex-wrap mb-4">
+        <button class="btn btn-primary" id="btn-submit" onclick="App.submitAnswer()" disabled>
+          Submit Answer
+        </button>
+        <button class="btn btn-secondary hidden" id="btn-next" onclick="App.nextQuestion()">
+          Next Question →
+        </button>
+        <button class="btn btn-flag" id="btn-flag" onclick="App.toggleFlag()" title="Flag for review">
+          ⚑ Flag
+        </button>
+      </div>
+
+      <!-- Feedback (shown after submit) -->
+      <div id="feedback-panel" class="feedback-panel hidden">
+        <div class="fw-bold fs-5 mb-2" id="feedback-result"></div>
+        <div class="card border-secondary mb-3" style="background:#1e1e1e;">
+          <div class="card-body" id="feedback-explanation" style="white-space:pre-line;line-height:1.7;color:#ffffff;"></div>
+        </div>
+        <p class="text-muted font-monospace small mb-2" id="feedback-objective"></p>
+        <button id="feedback-link" class="btn btn-sm btn-outline-info" onclick="App.openVideo()">
+          🎬 Watch Video →
+        </button>
+      </div>
+
+    </div>
+    <!-- /question-panel -->
+
+    <!-- Navigator Sidebar -->
+    <div class="nav-sidebar">
+      <p class="text-uppercase text-muted mb-2" style="font-size:.65rem;letter-spacing:.15em;">Questions</p>
+      <div id="nav-grid" class="nav-grid mb-3"></div>
+      <div class="nav-legend">
+        <div class="d-flex align-items-center gap-1 mb-1">
+          <span class="nav-dot correct"></span>
+          <span class="text-muted" style="font-size:.72rem;">Correct</span>
+        </div>
+        <div class="d-flex align-items-center gap-1 mb-1">
+          <span class="nav-dot incorrect"></span>
+          <span class="text-muted" style="font-size:.72rem;">Incorrect</span>
+        </div>
+        <div class="d-flex align-items-center gap-1 mb-1">
+          <span class="nav-dot flagged"></span>
+          <span class="text-muted" style="font-size:.72rem;">Flagged</span>
+        </div>
+        <div class="d-flex align-items-center gap-1">
+          <span class="nav-dot unanswered"></span>
+          <span class="text-muted" style="font-size:.72rem;">Unanswered</span>
+        </div>
+      </div>
+    </div>
+    <!-- /nav-sidebar -->
+
+  </div>
+  <!-- /exam-body-grid -->
+
+</div>
+<!-- /screen-exam -->
+
+
+<!-- =====================================================
+     SCREEN: RESULTS
+     ===================================================== -->
+<div id="screen-results" class="screen">
+  <div class="container py-5">
+
+    <div class="text-center mb-4">
+      <p class="text-muted small text-uppercase mb-1" style="letter-spacing:.15em;" id="results-exam-label">
+        Practice Exam A
+      </p>
+      <h2 class="display-5 fw-bold" id="results-title">Exam Complete</h2>
+    </div>
+
+    <!-- Score Ring -->
+    <div class="text-center mb-4" id="results-score-ring">
+      <div class="ring-wrap mx-auto">
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="52" class="ring-bg"/>
+          <circle cx="60" cy="60" r="52" class="ring-fill" id="ring-fill"/>
+        </svg>
+        <div class="ring-pct" id="ring-pct">0%</div>
+      </div>
+    </div>
+
+    <!-- Stats (rendered by JS) -->
+    <div class="d-flex justify-content-center flex-wrap gap-4 mb-3" id="results-stats"></div>
+
+    <!-- Grade message (rendered by JS) -->
+    <div class="text-center mb-4 fs-5 fw-semibold" id="results-grade"></div>
+
+    <!-- Question Breakdown (rendered by JS) -->
+    <div id="results-breakdown" class="mb-4"></div>
+
+    <!-- CTA Buttons -->
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <button class="btn btn-primary btn-lg" onclick="App.reviewExam()">
+        📋 Review Answers
+      </button>
+      <button class="btn btn-outline-secondary btn-lg" onclick="App.goHome()">
+        ← Back to Home
+      </button>
+    </div>
+
+  </div>
+</div>
+<!-- /screen-results -->
+
+
+<!-- =====================================================
+     MODAL: Confirm Exit
+     Controlled by app.js via .hidden on #modal-exit
+     ===================================================== -->
+<div class="modal-overlay hidden" id="modal-exit">
+  <div class="card border-secondary shadow-lg" style="max-width:380px;width:90%;">
+    <div class="card-header fw-bold border-secondary">Exit Exam?</div>
+    <div class="card-body">
+      <p class="text-muted mb-4">Your progress will be lost if you exit now.</p>
+      <div class="d-flex gap-2 justify-content-end">
+        <button class="btn btn-primary" onclick="App.cancelExit()">Continue Exam</button>
+        <button class="btn btn-danger" onclick="App.forceExit()">Exit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     TOAST — controlled by app.js via .hidden on #toast
+     ===================================================== -->
+<div class="toast-custom hidden" id="toast"></div>
+
+
+<!-- Bootstrap Bundle JS (Popper included) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<!-- Data -->
+<script src="js/data.js"></script>
+<!-- App Logic -->
+<script src="js/app.js"></script>
+</body>
+</html>
